@@ -47,11 +47,21 @@ namespace Remail_backend
                 app.UseDeveloperExceptionPage();
             }
 
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseDefaultFiles(options);
+
+            app.UseStaticFiles();
+
+
             app.UseCors(policyName);
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers().RequireCors(policyName); });

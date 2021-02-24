@@ -14,5 +14,11 @@ namespace Remail_backend.Controllers
         {
             return Ok();
         }
+        [HttpPost("api/getmails")]
+        public async Task<IActionResult> GetMails()
+        {
+
+            return Ok();
+        }
     }
 }

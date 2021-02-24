@@ -27,7 +27,7 @@ namespace Remail_backend.Controllers
         }
 
         [HttpPost("getMails")]
-        public async Task<List<Email>> GetMails()
+        public List<Email> GetMails()
         {
             //string username = _context.Account.Username;
             //string password = _context.Account.Password;
@@ -39,7 +39,7 @@ namespace Remail_backend.Controllers
                 return emails;
             }
 
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

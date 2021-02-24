@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Remail_backend.Models;
 
 namespace Remail_backend
 {
@@ -40,6 +42,8 @@ namespace Remail_backend
                             .AllowCredentials();
                     });
             });
+            services.AddDbContext<AccountContext>(opt =>
+                opt.UseInMemoryDatabase("AccountContext"));
             services.AddControllers();
         }
 

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using RemailCore.Services;
 
 namespace Remail_backend.Controllers
 {
@@ -15,15 +13,18 @@ namespace Remail_backend.Controllers
             return Ok();
         }
 
-        // POST: api/Login
-        //[HttpPost("Login")]
-        //public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
-        //{
-        //    _context.TodoItems.Add(todoItem);
-        //    await _context.SaveChangesAsync();
+        [HttpPost("send-email")]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject, [FromForm] string to)
+        {
+            if (!string.IsNullOrEmpty(to))
+            {
+                MailService mailService = new MailService();
+                mailService.SendNewEmail("tom1.wales2@gmail.com", "Almafa1234", body, subject, to);  // get username and password from context !
+                return Ok("Email sent");
+            }
 
-        //    //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-        //    return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
-        //}
+            return BadRequest();
+        }
     }
 }

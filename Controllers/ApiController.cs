@@ -45,7 +45,10 @@ namespace Remail_backend.Controllers
             {
                 _context.Account.Username = username;
                 _context.Account.Password = password;
-                return Ok("Success");
+                if (_context.MailService.IsCorrectLoginCredentials(username, password))
+                {
+                    return Ok("Success");
+                }
             }
 
             return BadRequest();

@@ -26,17 +26,6 @@ namespace Remail_backend.Controllers
             return Ok();
         }
 
-        // POST: api/Login
-        //[HttpPost("Login")]
-        //public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
-        //{
-        //    _context.TodoItems.Add(todoItem);
-        //    await _context.SaveChangesAsync();
-
-        //    //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-        //    return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
-        //}
-
         [HttpPost("login")]
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> Login([FromForm] string username, [FromForm] string password)

@@ -51,7 +51,7 @@ namespace Remail_backend.Controllers
             return Ok("Success");
         }
 
-        [HttpPost("getMails")]
+        [HttpPost("get-mails")]
         public List<Email> GetMails()
         {
             string username = _context.Account.Username;
@@ -60,19 +60,21 @@ namespace Remail_backend.Controllers
             {
                 return _context.MailService.GetMails(username, password);
             }
+
             return null;
         }
 
         [HttpPost("send-email")]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject, [FromForm] string to)
+        public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject,
+            [FromForm] string to)
         {
             string username = _context.Account.Username;
             string password = _context.Account.Password;
 
             switch (string.IsNullOrEmpty(to))
             {
-                case false when  _context.MailService.IsCorrectLoginCredentials(username, password):
+                case false when _context.MailService.IsCorrectLoginCredentials(username, password):
 
                     body = body == null ? string.Empty : body;
                     subject = subject == null ? string.Empty : subject;

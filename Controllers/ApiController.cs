@@ -42,6 +42,15 @@ namespace Remail_backend.Controllers
             }
         }
 
+        [HttpPost("log-out")]
+        [Consumes("application/x-www-form-urlencoded")]
+        public IActionResult LogOut()
+        {
+            _context.Account.Username = null;
+            _context.Account.Password = null;
+            return Ok("Success");
+        }
+
         [HttpPost("getMails")]
         public List<Email> GetMails()
         {

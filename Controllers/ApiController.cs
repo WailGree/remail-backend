@@ -20,6 +20,10 @@ namespace Remail_backend.Controllers
             if (!string.IsNullOrEmpty(to))
             {
                 MailService mailService = new MailService();
+
+                body = body == null ? string.Empty : body; 
+                subject = subject == null ? string.Empty : subject; 
+
                 mailService.SendNewEmail("tom1.wales2@gmail.com", "Almafa1234", body, subject, to);  // get username and password from context !
                 return Ok("Email sent");
             }

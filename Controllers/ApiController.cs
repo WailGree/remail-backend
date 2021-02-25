@@ -25,5 +25,17 @@ namespace Remail_backend.Controllers
         //    //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
         //    return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         //}
+
+        [HttpPost("login")]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> GetMails([FromForm] string username, [FromForm] string password)
+        {
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                return Ok("Success");
+            }
+
+            return BadRequest();
+        }
     }
 }

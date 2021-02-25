@@ -26,6 +26,23 @@ namespace Remail_backend.Controllers
             return Ok();
         }
 
+        [HttpPost("login")]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> Login([FromForm] string username, [FromForm] string password)
+        {
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                _context.Account.Username = username;
+                _context.Account.Password = password;
+                if (_context.MailService.IsCorrectLoginCredentials(username, password))
+                {
+                    return Ok("Success");
+                }
+            }
+
+            return BadRequest();
+        }
+
         [HttpPost("getMails")]
         public List<Email> GetMails()
         {

@@ -33,8 +33,7 @@ namespace Remail_backend.Controllers
             string password = _context.Account.Password;
             if (_context.MailService.IsCorrectLoginCredentials(username, password))
             {
-                List<Email> emails = _context.MailService.GetMails(username, password);
-                return emails;
+                return _context.MailService.GetMails(username, password);
             }
 
             return null;

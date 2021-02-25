@@ -30,17 +30,16 @@ namespace Remail_backend.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public IActionResult Login([FromForm] string username, [FromForm] string password)
         {
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            switch (string.IsNullOrEmpty(username))
             {
-                if (_context.MailService.IsCorrectLoginCredentials(username, password))
-                {
+                case false when !string.IsNullOrEmpty(password) &&
+                                _context.MailService.IsCorrectLoginCredentials(username, password):
                     _context.Account.Username = username;
                     _context.Account.Password = password;
                     return Ok("Success");
-                }
+                default:
+                    return BadRequest();
             }
-
-            return BadRequest();
         }
 
         [HttpPost("getMails")]

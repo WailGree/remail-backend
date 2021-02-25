@@ -60,7 +60,7 @@ namespace Remail_backend.Controllers
             string password = "Almafa1234";
             if (_context.MailService.IsCorrectLoginCredentials(username, password))
             {
-                List<Email> emails = _context.MailService.GetMails("tom1.wales2@gmail.com", "Almafa1234");
+                List<Email> emails = _context.MailService.GetMails(username, password);
                 return emails;
             }
 

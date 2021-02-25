@@ -29,13 +29,11 @@ namespace Remail_backend.Controllers
         [HttpPost("getMails")]
         public List<Email> GetMails()
         {
-            //string username = _context.Account.Username;
-            //string password = _context.Account.Password;
-            string username = "tom1.wales2@gmail.com";
-            string password = "Almafa1234";
+            string username = _context.Account.Username;
+            string password = _context.Account.Password;
             if (_context.MailService.IsCorrectLoginCredentials(username, password))
             {
-                List<Email> emails = _context.MailService.GetMails("tom1.wales2@gmail.com", "Almafa1234");
+                List<Email> emails = _context.MailService.GetMails(username, password);
                 return emails;
             }
 

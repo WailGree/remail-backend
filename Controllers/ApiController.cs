@@ -28,7 +28,7 @@ namespace Remail_backend.Controllers
 
         [HttpPost("login")]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> Login([FromForm] string username, [FromForm] string password)
+        public IActionResult Login([FromForm] string username, [FromForm] string password)
         {
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {

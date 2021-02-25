@@ -1,21 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Remail_backend.Models;
 
 namespace Remail_backend
 {
     public class Startup
     {
+        string policyName = "CORS_POLICY";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,12 +22,21 @@ namespace Remail_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddCors(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Remail_backend", Version = "v1" });
+                options.AddPolicy(policyName,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    });
             });
+            services.AddDbContext<AccountContext>(opt =>
+                opt.UseInMemoryDatabase("AccountContext"));
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,20 +45,26 @@ namespace Remail_backend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Remail_backend v1"));
             }
+
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseDefaultFiles(options);
+
+            app.UseStaticFiles();
+
+
+            app.UseCors(policyName);
+
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers().RequireCors(policyName); });
         }
     }
 }

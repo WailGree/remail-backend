@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Remail_backend.Models;
+using RemailCore.Models;
+using RemailCore.Services;
 
 namespace Remail_backend.Controllers
 {
@@ -10,9 +12,31 @@ namespace Remail_backend.Controllers
     [Route("api")]
     public class ApiController : Controller
     {
+        private AccountContext _context;
+
+        public ApiController(AccountContext context)
+        {
+            _context = context;
+            _context.Account = new Account();
+            _context.MailService = new MailService();
+        }
+
         public IActionResult Index()
         {
             return Ok();
+        }
+
+        [HttpPost("getMails")]
+        public List<Email> GetMails()
+        {
+            string username = _context.Account.Username;
+            string password = _context.Account.Password;
+            if (_context.MailService.IsCorrectLoginCredentials(username, password))
+            {
+                return _context.MailService.GetMails(username, password);
+            }
+
+            return null;
         }
     }
 }

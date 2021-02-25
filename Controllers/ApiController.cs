@@ -58,19 +58,21 @@ namespace Remail_backend.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject, [FromForm] string to)
         {
-            if (!string.IsNullOrEmpty(to))
+            string username = _context.Account.Username;
+            string password = _context.Account.Password;
+
+            switch (string.IsNullOrEmpty(to))
             {
-                MailService mailService = new MailService();
+                case false when  _context.MailService.IsCorrectLoginCredentials(username, password):
 
-                body = body == null ? string.Empty : body; 
-                subject = subject == null ? string.Empty : subject; 
+                    body = body == null ? string.Empty : body;
+                    subject = subject == null ? string.Empty : subject;
 
-                mailService.SendNewEmail("tom1.wales2@gmail.com", "Almafa1234", body, subject, to);  // get username and password from context !
-                return Ok("Email sent");
+                    _context.MailService.SendNewEmail(username, password, body, subject, to);
+                    return Ok("Email sent");
+                default:
+                    return BadRequest();
             }
-
-
-            return BadRequest();
         }
     }
 }

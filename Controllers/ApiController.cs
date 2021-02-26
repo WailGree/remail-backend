@@ -71,6 +71,8 @@ namespace Remail_backend.Controllers
         {
             string username = _context.Account.Username;
             string password = _context.Account.Password;
+            username = "tom1.wales2@gmail.com";
+            password = "Almafa1234";
 
             switch (string.IsNullOrEmpty(to))
             {

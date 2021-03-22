@@ -52,10 +52,13 @@ namespace Remail_backend.Controllers
         }
 
         [HttpPost("get-mails")]
-        public List<Email> GetMails()
+        public IEnumerable<Email> GetMails()
         {
             string username = _context.Account.Username;
             string password = _context.Account.Password;
+            username = "tom1.wales2@gmail.com";
+            password = "Almafa1234";
+
             if (_context.MailService.IsCorrectLoginCredentials(username, password))
             {
                 return _context.MailService.GetMails(username, password);

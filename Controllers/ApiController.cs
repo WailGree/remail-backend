@@ -12,6 +12,7 @@ namespace Remail_backend.Controllers
     public class ApiController : Controller
     {
         MailService _mailService = new MailService();
+
         public ApiController()
         {
         }
@@ -29,8 +30,6 @@ namespace Remail_backend.Controllers
             {
                 case false when !string.IsNullOrEmpty(password) &&
                                 _mailService.IsCorrectLoginCredentials(username, password):
-                    //_context.Account.Username = username;
-                    //_context.Account.Password = password;
                     return Ok("Success");
                 default:
                     return BadRequest();
@@ -41,16 +40,12 @@ namespace Remail_backend.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public IActionResult LogOut()
         {
-            //_context.Account.Username = null;
-            //_context.Account.Password = null;
             return Ok("Success");
         }
 
         [HttpPost("get-mails")]
         public IEnumerable<Email> GetMails()
         {
-            //string username = _context.Account.Username;
-            //string password = _context.Account.Password;
             string username = "tom1.wales2@gmail.com";
             string password = "Almafa1234";
 
@@ -67,8 +62,6 @@ namespace Remail_backend.Controllers
         public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject,
             [FromForm] string to)
         {
-            //string username = _context.Account.Username;
-            //string password = _context.Account.Password;
             string username = "tom1.wales2@gmail.com";
             string password = "Almafa1234";
 

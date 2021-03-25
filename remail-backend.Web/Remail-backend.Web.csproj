@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Remail_backend</RootNamespace>
+    <AssemblyName>Remail-backend</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\remailcore\RemailCore.csproj" />
+    <ProjectReference Include="..\..\remailcore\RemailCore.csproj" />
   </ItemGroup>
 
 </Project>

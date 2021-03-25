@@ -33,7 +33,7 @@ namespace Remail_backend.Tests
             var keyValuePairs = new List<KeyValuePair<string, string>>();
             keyValuePairs.Add(new KeyValuePair<string, string>("username", "tom1.wales2@gmail.com"));
             keyValuePairs.Add(new KeyValuePair<string, string>("password", "Almafa1234"));
-            var req = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(keyValuePairs) };
+            var req = new HttpRequestMessage(HttpMethod.Post, url) {Content = new FormUrlEncodedContent(keyValuePairs)};
 
             // Act
             var response = await _client.SendAsync(req);
@@ -45,9 +45,14 @@ namespace Remail_backend.Tests
         [Test]
         public async Task Post_Should_Get_Emails()
         {
+            // Arrange
             var stringContent = new StringContent(JsonConvert.SerializeObject(""), Encoding.UTF8,
                 "application/x-www-form-urlencoded");
+
+            // Act
             var response = await _client.PostAsync("api/get-mails", stringContent);
+
+            // Assert
             Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
         }
     }

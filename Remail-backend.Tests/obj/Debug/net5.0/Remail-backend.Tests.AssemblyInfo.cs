@@ -11,6 +11,8 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Remail-backend.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\szila\\Documents\\Visual Studio 2019\\Projects\\.NET TW\\remail-backend\\remai" +
+    "l-backend.Web", "Remail-backend.Web.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Remail-backend.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

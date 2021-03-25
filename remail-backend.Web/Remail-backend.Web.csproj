@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Remail_backend</RootNamespace>
-    <AssemblyName>Remail-backend</AssemblyName>
+    <AssemblyName>Remail-backend.Web</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

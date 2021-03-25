@@ -1,4 +1,6 @@
 .vs/
+/bin
+/obj
 /Remail-backend.Web/bin
 /Remail-backend.Tests/bin
 /Remail-backend.Web/obj

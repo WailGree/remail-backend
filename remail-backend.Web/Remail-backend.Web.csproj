@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\remailcore\RemailCore.csproj" />
+	  <ProjectReference Include="..\..\remailcore\RemailCore.Library\RemailCore.Library.csproj" />
   </ItemGroup>
 
 </Project>

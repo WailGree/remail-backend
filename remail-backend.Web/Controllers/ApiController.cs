@@ -46,6 +46,7 @@ namespace Remail_backend.Controllers
         [HttpPost("get-mails")]
         public IEnumerable<Email> GetMails()
         {
+            // Dummy Gmail account credentials
             string username = "tom1.wales2@gmail.com";
             string password = "Almafa1234";
 

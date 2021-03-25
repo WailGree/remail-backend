@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,23 @@ namespace Remail_backend.Tests
         [SetUp]
         public void Setup()
         {
+        }
+
+        [Test]
+        public async Task Get_Authentication_Should_Return_Ok()
+        {
+            // Arrange
+            string url = "api/login";
+            var keyValuePairs = new List<KeyValuePair<string, string>>();
+            keyValuePairs.Add(new KeyValuePair<string, string>("username", "tom1.wales2@gmail.com"));
+            keyValuePairs.Add(new KeyValuePair<string, string>("password", "Almafa1234"));
+            var req = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(keyValuePairs) };
+
+            // Act
+            var response = await _client.SendAsync(req);
+
+            // Assert
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
         }
 
         [Test]

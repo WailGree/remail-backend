@@ -1,0 +1,5 @@
+C:\Users\szila\Documents\Visual Studio 2019\Projects\.NET TW\remail-backend\Remail-backend.Tests\obj\Debug\net5.0\Remail-backend.Tests.csprojAssemblyReference.cache
+C:\Users\szila\Documents\Visual Studio 2019\Projects\.NET TW\remail-backend\Remail-backend.Tests\obj\Debug\net5.0\Remail-backend.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\szila\Documents\Visual Studio 2019\Projects\.NET TW\remail-backend\Remail-backend.Tests\obj\Debug\net5.0\Remail-backend.Tests.AssemblyInfoInputs.cache
+C:\Users\szila\Documents\Visual Studio 2019\Projects\.NET TW\remail-backend\Remail-backend.Tests\obj\Debug\net5.0\Remail-backend.Tests.AssemblyInfo.cs
+C:\Users\szila\Documents\Visual Studio 2019\Projects\.NET TW\remail-backend\Remail-backend.Tests\obj\Debug\net5.0\Remail-backend.Tests.csproj.CoreCompileInputs.cache

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RemailCore.Library.DataAccess;
 using RemailCore.Library.Models;
 using RemailCore.Library.Services;
 
@@ -10,10 +11,13 @@ namespace Remail_backend.Controllers
     [Route("api")]
     public class ApiController : Controller
     {
-        MailService _mailService = new MailService();
+        private readonly MailService _mailService;
+        private readonly DataContext _db;
 
-        public ApiController()
+        public ApiController(DataContext db, MailService mailService)
         {
+            _db = db;
+            _mailService = mailService;
         }
 
         public IActionResult Index()

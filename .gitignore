@@ -1,3 +1,7 @@
 .vs/
-bin/
-obj/
+/bin
+/obj
+/Remail-backend.Web/bin
+/Remail-backend.Tests/bin
+/Remail-backend.Web/obj
+/Remail-backend.Tests/obj

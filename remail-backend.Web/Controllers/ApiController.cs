@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Remail_backend.Models;
-using RemailCore.Models;
-using RemailCore.Services;
+using RemailCore.Library.DataAccess;
+using RemailCore.Library.Models;
+using RemailCore.Library.Services;
 
 namespace Remail_backend.Controllers
 {
@@ -12,13 +10,13 @@ namespace Remail_backend.Controllers
     [Route("api")]
     public class ApiController : Controller
     {
-        private AccountContext _context;
+        private readonly MailService _mailService;
+        private readonly DataContext _db;
 
-        public ApiController(AccountContext context)
+        public ApiController(DataContext db, MailService mailService)
         {
-            _context = context;
-            _context.Account = new Account();
-            _context.MailService = new MailService();
+            _db = db;
+            _mailService = mailService;
         }
 
         public IActionResult Index()
@@ -33,9 +31,7 @@ namespace Remail_backend.Controllers
             switch (string.IsNullOrEmpty(username))
             {
                 case false when !string.IsNullOrEmpty(password) &&
-                                _context.MailService.IsCorrectLoginCredentials(username, password):
-                    _context.Account.Username = username;
-                    _context.Account.Password = password;
+                                _mailService.IsCorrectLoginCredentials(username, password):
                     return Ok("Success");
                 default:
                     return BadRequest();
@@ -46,19 +42,19 @@ namespace Remail_backend.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public IActionResult LogOut()
         {
-            _context.Account.Username = null;
-            _context.Account.Password = null;
             return Ok("Success");
         }
 
         [HttpPost("get-mails")]
-        public List<Email> GetMails()
+        public IEnumerable<Email> GetMails()
         {
-            string username = _context.Account.Username;
-            string password = _context.Account.Password;
-            if (_context.MailService.IsCorrectLoginCredentials(username, password))
+            // Dummy Gmail account credentials
+            string username = "tom1.wales2@gmail.com";
+            string password = "Almafa1234";
+
+            if (_mailService.IsCorrectLoginCredentials(username, password))
             {
-                return _context.MailService.GetMails(username, password);
+                return _mailService.GetMails(username, password);
             }
 
             return null;
@@ -66,22 +62,20 @@ namespace Remail_backend.Controllers
 
         [HttpPost("send-email")]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject,
+        public IActionResult SendMail([FromForm] string body, [FromForm] string subject,
             [FromForm] string to)
         {
-            string username = _context.Account.Username;
-            string password = _context.Account.Password;
-            username = "tom1.wales2@gmail.com";
-            password = "Almafa1234";
+            string username = "tom1.wales2@gmail.com";
+            string password = "Almafa1234";
 
             switch (string.IsNullOrEmpty(to))
             {
-                case false when _context.MailService.IsCorrectLoginCredentials(username, password):
+                case false when _mailService.IsCorrectLoginCredentials(username, password):
 
                     body = body == null ? string.Empty : body;
                     subject = subject == null ? string.Empty : subject;
 
-                    _context.MailService.SendNewEmail(username, password, body, subject, to);
+                    _mailService.SendNewEmail(username, password, body, subject, to);
                     return Ok("Email sent");
                 default:
                     return BadRequest();

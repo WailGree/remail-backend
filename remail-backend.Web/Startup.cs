@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Remail_backend.Models;
+using RemailCore.Library.DataAccess;
 
 namespace Remail_backend
 {
@@ -34,8 +34,10 @@ namespace Remail_backend
                             .AllowCredentials();
                     });
             });
-            services.AddDbContext<AccountContext>(opt =>
-                opt.UseInMemoryDatabase("AccountContext"));
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
             services.AddControllers();
         }
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using RemailCore.Library.DataAccess;
 using RemailCore.Library.Models;
 using RemailCore.Library.Services;

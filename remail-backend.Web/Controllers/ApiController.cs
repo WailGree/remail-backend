@@ -63,7 +63,7 @@ namespace Remail_backend.Controllers
 
         [HttpPost("send-email")]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> SendMail([FromForm] string body, [FromForm] string subject,
+        public IActionResult SendMail([FromForm] string body, [FromForm] string subject,
             [FromForm] string to)
         {
             string username = "tom1.wales2@gmail.com";

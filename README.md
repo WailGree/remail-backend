@@ -1,6 +1,6 @@
 # Remail-backend
 
-Backend of project "Remail". ASP.NET Core based. API Controller, makes use of [RemailCore](https://github.com/WailGree/remailcore) Class Library.
+Backend of project "Remail". ASP.NET Core based. API Controller, makes use of [RemailCore](https://github.com/WailGree/remailcore) Class Library. Azure DevOps Pipeline used.
 
 
 Controllers:

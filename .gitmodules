@@ -1,0 +1,3 @@
+[submodule "remailcore"]
+	path = remailcore
+	url = https://github.com/WailGree/remailcore

@@ -10,13 +10,12 @@ namespace Remail_backend.Controllers
     [Route("api")]
     public class ApiController : Controller
     {
-        private readonly MailService _mailService;
+        private readonly MailService _mailService = new MailService();
         private readonly DataContext _db;
 
-        public ApiController(DataContext db, MailService mailService)
+        public ApiController(DataContext db)
         {
             _db = db;
-            _mailService = mailService;
         }
 
         public IActionResult Index()

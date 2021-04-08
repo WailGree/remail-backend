@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\remailcore\RemailCore.Library\RemailCore.Library.csproj" />
+    <Reference Include="RemailCore.Library">
+      <HintPath>..\remailcore\RemailCore.Library\bin\Release\netstandard2.1\RemailCore.Library.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

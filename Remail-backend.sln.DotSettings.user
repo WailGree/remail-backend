@@ -1,6 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7e9630af_002Db197_002D4768_002Daff5_002Dfe5328d34283/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Post_Should_Get_Emails" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::342EEBA3-0333-474D-A475-AF6686AF1193::net5.0::Remail_backend.Tests.ApiControllerTests.Post_Should_LogOut_ReturnOK&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::342EEBA3-0333-474D-A475-AF6686AF1193::net5.0::Remail_backend.Tests.ApiControllerTests.Get_Authentication_Should_Return_Ok&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>

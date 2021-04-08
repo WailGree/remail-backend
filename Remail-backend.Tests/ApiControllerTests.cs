@@ -56,5 +56,39 @@ namespace Remail_backend.Tests
             // Assert
             Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
         }
+
+
+        [Test]
+        public async Task Post_Should_LogOut_ReturnOK()
+        {
+            // Arrange
+            var stringContent = new StringContent(JsonConvert.SerializeObject(""), Encoding.UTF8,
+                "application/x-www-form-urlencoded");
+
+            // Act
+            var response = await _client.PostAsync("api/log-out", stringContent);
+
+            // Assert
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
+        }
+
+        [Test]
+        public async Task Send_Mail_Should_Return_Ok()
+        {
+            // Arrange
+            string url = "api/send-email";
+            var keyValuePairs = new List<KeyValuePair<string, string>>();
+            // Dummy Gmail account credentials
+            keyValuePairs.Add(new KeyValuePair<string, string>("body", "This is a test"));
+            keyValuePairs.Add(new KeyValuePair<string, string>("subject", "Test"));
+            keyValuePairs.Add(new KeyValuePair<string, string>("to", "tom1.wales2@gmail.com"));
+            var req = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(keyValuePairs) };
+
+            // Act
+            var response = await _client.SendAsync(req);
+
+            // Assert
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
+        }
     }
 }

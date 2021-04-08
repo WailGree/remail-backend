@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using RemailCore.Library.DataAccess;
+using RemailCore.DataAccess;
 
 namespace Remail_backend
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using RemailCore.Library.DataAccess;
-using RemailCore.Library.Models;
-using RemailCore.Library.Services;
+using RemailCore.DataAccess;
+using RemailCore.Models;
+using RemailCore.Services;
 
 namespace Remail_backend.Controllers
 {
